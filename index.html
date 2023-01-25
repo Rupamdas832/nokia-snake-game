@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="game-start-screen">
+      <button onclick="startGame()" class="start-btn">Play</button>
+    </div>
+    <div class="game-container">
+      <div class="score-container">
+        <p class="score-text">Score:</p>
+        <p class="score">00</p>
+      </div>
+      <canvas class="board"></canvas>
+      <h3 class="timer">50</h3>
+      <div class="game-over-container">
+        <p class="game-over"></p>
+        <button class="play-again-btn" onclick="restartGame()">
+          Play Again
+        </button>
+      </div>
+      <div class="game-image">
+        <img src="https://i.ibb.co/k93Q0CG/nokia-6110new.jpg" alt="nokia" />
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
