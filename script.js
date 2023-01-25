@@ -1,6 +1,7 @@
 const gameContainer = document.querySelector(".game-container");
 const board = document.querySelector(".board");
 const scoreDisplay = document.querySelector(".score");
+const topScoreDisplay = document.querySelector(".top-score");
 const timerDisplay = document.querySelector(".timer");
 const gameOverDisplay = document.querySelector(".game-over");
 const gameOverContainer = document.querySelector(".game-over-container");
@@ -18,6 +19,7 @@ let snakeSpeedX = 0;
 let snakeSpeedY = 0;
 let speed = 10;
 let score = 0;
+let topScore = 0;
 let isGameOver = false;
 let isGameStart = false;
 let clearUpdate;
@@ -143,13 +145,41 @@ function boundryCollide() {
     snakeY < -5 ||
     snakeY > blockSize * row - 20
   ) {
-    isGameOver = true;
-    gameOverContainer.style.opacity = 1;
-    gameOverDisplay.innerText = "Game Over";
-    clearInterval(timer);
+    gameOver();
   }
 }
 
 function restartGame() {
-  window.location.reload();
+  gameOverContainer.style.opacity = 0;
+  resetValues();
+  startGame();
+}
+
+function gameOver() {
+  isGameOver = true;
+  gameOverContainer.style.opacity = 1;
+  gameOverDisplay.innerText = "Game Over";
+  if (score > topScore) {
+    topScore = score;
+    topScoreDisplay.innerText = topScore;
+  }
+  clearInterval(timer);
+}
+
+function resetValues() {
+  snakeX = blockSize * 4;
+  snakeY = 10;
+  snakeSpeedX = 1;
+  snakeSpeedY = 0;
+  speed = 10;
+  score = 0;
+  isGameOver = false;
+  isGameStart = true;
+  timerValue = 50;
+  snakeBody = [
+    [blockSize * 4, 10],
+    [blockSize * 3, 10],
+    [blockSize * 2, 10],
+    [blockSize, 10],
+  ];
 }
